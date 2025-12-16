@@ -1,0 +1,64 @@
+# === Stable-Baselines3 config ===
+sb3:
+  policy: "MlpPolicy"
+  gamma: 0.9995
+  ent_coef: 0.00001
+  seed: 42
+  clip_range: 0.2
+  verbose: True
+
+# "Medium" policy settings
+sb3_medium_timesteps: 150000  # timesteps to train PPO
+sb3_ppo_medium_weights: "ppo-lunarlander-v3-medium-150k-steps.zip"
+
+# "Expert" policy settings
+sb3_expert_timesteps: 2000000 # timesteps to train PPO
+sb3_ppo_expert_weights: "ppo-lunarlander-v3-expert-2M-steps.zip"
+
+# === Gymnasium config ===
+gym_env_id: "LunarLander-v3"
+gym_seed: 42
+
+# === Dataset config ===
+# Medium dataset settings
+total_episodes_medium: 2500  # episodes in medium dataset
+root_medium_dataset: "lunarlander-v3-ppo-medium-2500eps.npz" 
+
+# Expert dataset settings
+total_episodes_expert: 2500  # episodes in expert dataset
+root_expert_dataset: "lunarlander-v3-ppo-expert-2500eps.npz" 
+
+# === Decision Transformer model config ===
+n_layers: 3
+n_heads: 1
+embed_dim: 128
+k_dim: 64
+v_dim: 64
+ff_dim: 2048
+dropout: 0.1
+
+scale: 100.0          # reward scaling
+max_ep_len: 1000
+context_length: 20
+state_dim: 8
+action_dim: 4
+disc_act_space: true  # discrete or continuous action space
+
+dt_weights: "dt-lunarlander-v3-ctx20.pth"
+
+# === Decision transformer training settings ===
+epochs: 250
+batch_size: 64
+learning_rate: 0.0001
+weight_decay: 0.0001
+grad_norm_clip: 0.25
+warmup_ratio: 0.1
+
+seed: 42
+verbose: true
+
+eval_every: 2
+save_every: 2
+
+# === Evaluation settings (for live eval during training) ===
+num_online_eval_runs: 5
