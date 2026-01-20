@@ -90,10 +90,6 @@ Note: *In Lunar Lander, an episode is considered a solution if it scores at leas
 
 *Figure 5:  Influence of the return-to-go (RTG) values used to condition the DT in Lunar Lander evluation.*
 
-## Half Cheetah
-
-*TODO*
-
 ## Citations
 
 ```bibtex
