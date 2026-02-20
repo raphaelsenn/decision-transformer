@@ -10,7 +10,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from data.lunarlander import LunarLanderOfflineDataset
 from decision_transformer.decision_transformer import DecisionTransformer
-from training.trainer_ce import Trainer
+from training.trainer_discrete import TrainerDiscrete
 from utils.utils import load_config, parse_args, set_seeds
 from data.utils import (
     split_train_val, 
@@ -63,7 +63,7 @@ if __name__ == "__main__":
     scheduler = torch.optim.lr_scheduler.LambdaLR(optimizer, lambda steps: min((steps+1) / warmup_steps, 1))
 
     # Start training
-    trainer = Trainer(
+    trainer = TrainerDiscrete(
         cfg, model, criterion, optimizer, scheduler, train_loader, val_loader, device,
         state_mean=state_mean, state_std=state_std, scale=cfg["scale"]
     )
